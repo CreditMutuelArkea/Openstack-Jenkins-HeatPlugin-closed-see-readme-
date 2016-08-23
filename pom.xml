@@ -19,8 +19,8 @@
 	<description>This plugin is used to interact with OpenStack via Heat Orchestration Template (HOT).</description>
 	<licenses>
 		<license>
-			<name>MIT License</name>
-			<url>http://opensource.org/licenses/MIT</url>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
 	<repositories>
