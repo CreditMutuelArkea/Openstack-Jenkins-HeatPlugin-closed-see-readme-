@@ -1,0 +1,14 @@
+[
+	{"id":"delete_create_complete", "stack_name":"delete_create_complete", "stack_status_reason": ""},
+	{"id":"delete_create_complete", "stack_name":"delete_create_complete", "stack_status_reason": "", "stack_status":"DELETE_COMPLETE"},
+	{"id":"delete_create_complete", "stack_name":"delete_create_complete", "stack_status_reason": ""},
+	{"id":"delete_create_complete", "stack_name":"delete_create_complete", "stack_status_reason": "", "stack_status":"CREATE_COMPLETE"},
+	{"id":"delete_create_complete", "stack_name":"delete_create_complete", "stack_status_reason": "", "stack_status":"CREATE_COMPLETE", "outputs": 
+		[{
+			"output_value": {"instance_name": {"description": "Name of the instance.", "value": "192.168.1.19"},
+							 "instance_ip": {"description": "IP address of the instance.", "value": "serverName"}},
+			"description": "Json output.",
+			"output_key": "json_output"
+		}]
+	}
+]

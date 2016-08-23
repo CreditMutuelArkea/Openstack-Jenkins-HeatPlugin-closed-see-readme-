@@ -1,0 +1,67 @@
+<!--
+/**
+ * 
+ * Copyright 2015 Credit Mutuel Arkea
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and 
+ * limitations under the License.
+ * 
+ */
+-->
+ <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:cmn="/lib/common">
+	<cmn:sectionHelp title="${%HOTPlayerSettings.title}" url="${resURL}/plugin/openstack-heat/help/loader.html"/>
+	<f:block>
+		<f:dropdownDescriptorSelector field="loader" title="${%HOTPlayerSettings.loader.title}" />
+  	</f:block>
+  	<cmn:sectionHelp title="${%HOTPlayerSettings.configuration.title}" url="${resURL}/plugin/openstack-heat/help/addProject.html"/>
+  	<f:block>
+  		<f:repeatable varStatus="index" field="projects" add="${%HOTPlayerSettings.projects.add}" header="${%HOTPlayerSettings.projects.header}">
+  			<br />
+  			<table width="100%">
+	    		<f:entry title="${%HOTPlayerSettings.project.title}" field="project" description="${%HOTPlayerSettings.project.description}">
+	       			<f:textbox />
+	       		</f:entry>
+	    		<f:entry title="${%HOTPlayerSettings.url.title}" field="url" description="${%HOTPlayerSettings.url.description}">
+	        		<f:textbox />
+	        		<table>
+  						<f:optionalBlock name="v3" title="${%HOTPlayerSettings.v3.title}" checked="${instance.checkV3}">
+      						<f:entry field="domain" title="${%HOTPlayerSettings.domain.title}">
+        						<f:textbox default="${%HOTPlayerSettings.default}"/>
+      						</f:entry>
+    					</f:optionalBlock>
+	        		</table>
+	      		</f:entry>
+	       		<f:entry title="${%HOTPlayerSettings.user.title}" field="user" description="${%HOTPlayerSettings.user.description}">
+	        		<f:textbox />
+	       		</f:entry>
+	      		<f:entry title="${%HOTPlayerSettings.password.title}" field="password" description="${%HOTPlayerSettings.password.description}">
+	        		<f:password />
+	      		</f:entry>
+	      		<f:validateButton title="${%HOTPlayerSettings.test.title}" progress="${%HOTPlayerSettings.test.progress}" method="testConnection" with="project,url,v3,domain,user,password" />
+	      		<f:entry title="">
+					<div align="right">
+						<f:repeatableDeleteButton value="${%HOTPlayerSettings.projects.delete}"/>
+					</div>
+				</f:entry>
+	      	</table>
+		</f:repeatable>
+	</f:block>
+	<cmn:sectionHelp title="${%HOTPlayerSettings.times.title}" url="${resURL}/plugin/openstack-heat/help/times.html"/>
+	<f:block>
+    	<f:entry title="${%HOTPlayerSettings.pollingStatus.title}" field="pollingStatus">
+       		<f:number />
+    	</f:entry>
+       	<f:entry title="${%HOTPlayerSettings.timeoutProcess.title}" field="timeoutProcess">
+        	<f:number />
+       	</f:entry>
+	</f:block>
+</j:jelly>

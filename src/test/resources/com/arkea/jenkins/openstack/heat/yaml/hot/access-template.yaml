@@ -1,0 +1,41 @@
+# Copyright 2015 Credit Mutuel Arkea
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+ # 
+ #     http://www.apache.org/licenses/LICENSE-2.0
+ # 
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ # See the License for the specific language governing permissions and 
+ # limitations under the License.
+heat_template_version: 2015-10-15
+description: Create a floatin ip on a specific network and attach an instance.
+
+parameters:
+  FloatingNetwork:
+    type: string
+    description: Network used to provide an ip floating.
+  PortId:
+    type: string
+    description: Id port to associate to the ip floating.
+
+resources:
+  floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: { get_param: FloatingNetwork }
+  
+  association:
+    depends_on: floating_ip
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: { get_resource: floating_ip }
+      port_id: { get_param: PortId }
+
+outputs:
+  floating_ip:
+    description: IP floating associated at the instance.
+    value: { get_attr: [ floating_ip, floating_ip_address ] }

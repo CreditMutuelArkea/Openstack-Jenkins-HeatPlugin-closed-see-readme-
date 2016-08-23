@@ -1,0 +1,4 @@
+[
+	{"id":"delete_failed", "stack_name":"delete_failed", "stack_status_reason": ""},
+	{"id":"delete_failed", "stack_name":"delete_failed", "stack_status_reason": "", "stack_status":"DELETE_FAILED"}
+]

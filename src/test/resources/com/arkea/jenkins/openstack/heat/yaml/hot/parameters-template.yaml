@@ -1,0 +1,83 @@
+ # Copyright 2015 Credit Mutuel Arkea
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+ # 
+ #     http://www.apache.org/licenses/LICENSE-2.0
+ # 
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ # See the License for the specific language governing permissions and 
+ # limitations under the License.
+ 
+heat_template_version: 2015-08-25
+
+description: Template HOT to test parameters et outputs
+            
+parameters:
+  testString:
+    type: string
+    label: testString
+    description: test a type string
+    default: "string"
+    hidden : false
+    constraints:
+      - length: { min: 8, max: 16 }
+        description: String must be between 8 and 16 characters
+  testNumber:
+    type: number
+    label: testNumber
+    description: test a type number
+    default: "33"
+    hidden : true
+    constraints:
+      - range: { min: -1.5, max: 2.5 }
+  testJson:
+    type: json
+    label: testJson
+    description: test a type json
+    default: {"key":"value"}
+    hidden : false
+    constraints:
+      - custom_constraint: heat.engine.constraint.heat_constraints:ResourceTypeConstraint
+  testBoolean:
+    type: boolean
+    label: testBoolean
+    description: test a type boolean
+    default: "on"
+    hidden : true
+    constraints:
+      - allowed_values:
+        - true
+        - false
+  testCommaDelimitedList:
+    type: comma_delimited_list
+    label: testCommaDelimitedList
+    description: test a type comma_delimited_list
+    default: "one, two"
+    hidden : false
+  testConstraints:
+    type: string
+    label: testConstraints
+    description: test a type string with allowed_pattern and length
+    default: "REC"
+    hidden : false
+    constraints:
+      - allowed_pattern: "[A-Z]+[a-zA-Z0-9]*"
+        description: String name must start with an uppercase character
+      - length: { min: 8, max: 16 }
+        description: String must be between 8 and 16 characters
+      
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    properties:
+      flavor: m1.small
+      image: F18-x86_64-cfntools
+
+outputs:
+  testOutput:
+    description: test a value output
+    value: { get_attr: [my_instance, first_address] }

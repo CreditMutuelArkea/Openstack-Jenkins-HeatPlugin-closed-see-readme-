@@ -1,0 +1,45 @@
+<!--
+/**
+ * 
+ * Copyright 2015 Credit Mutuel Arkea
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and 
+ * limitations under the License.
+ * 
+ */
+-->
+<div>
+    The Heat Orchestration Template (HOT) player allows to play HOT file to OpenStack.<br>
+    The HOT player load the HOT file choose in the selectbox and generate dynamically the inputs.<br>
+    If the Associate Env File is configured than the selectbox permits to choose one file env file. By default when you choose a HOT file, the selectbox Associate Env File tries to select the same env file name if it exits or the default env file.<br>
+    The inputs are divided in 3 categories :<br>
+    <ul>
+    	<li>Properties
+    		<ul>
+    			<li>Stack name : corresponding to the the name used in OpenStack</li>
+    			<li>Delete stack if already exists ? : if you want reuse the same name for a stack, the plugin destroys the stack if already exits.</li>
+    			<li>Debug mode ? : if it's checked than the console print all the differents values parameters</li>
+    		</ul>
+    	</li>
+    	<li>Parameters
+    		<ul>
+    			<li>This category is generated dynamically from the differents parameters present in the HOT.</li>
+    		</ul>
+    	</li>	
+    	<li>Outputs
+    		<ul>
+    			<li>This category is generated dynamically from the differents outputs present in the HOT.</li>
+    		</ul>
+    	</li>	
+    </ul>
+    You can use variable environment in each input. The variable must be start with "$" without "-".
+</div>
