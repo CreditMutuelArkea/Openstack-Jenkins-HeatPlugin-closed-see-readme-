@@ -119,8 +119,8 @@ public class HOTPlayerSettingsDataTest extends AbstractTest {
 	public void testConfigurable() throws Exception {
 
 		String pathHot = getClass().getResource(
-				"/parameters-template.yaml").getPath();
-		String pathEnv = getClass().getResource("/default.yaml")
+				"/hot/parameters-template.yaml").getPath();
+		String pathEnv = getClass().getResource("/env/default.yaml")
 				.getPath();
 
 		HtmlForm form = j.createWebClient().goTo("configure")

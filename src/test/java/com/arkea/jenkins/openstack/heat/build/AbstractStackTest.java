@@ -61,7 +61,7 @@ public abstract class AbstractStackTest extends AbstractTest {
 					.mock(OpenStack4jClient.class);
 
 			// Configure the project and the hot file
-			String pathHot = getClass().getResource("/demo-template.yaml")
+			String pathHot = getClass().getResource("/hot/demo-template.yaml")
 					.getPath();
 
 			ArrayList<HeatStack> stacks = (new ObjectMapper()).readValue(
@@ -71,7 +71,7 @@ public abstract class AbstractStackTest extends AbstractTest {
 					});
 
 			// Create the bundle to test
-			Bundle bundle = new Bundle("demo-template.yaml", stackName, delete,
+			Bundle bundle = new Bundle("/hot/demo-template.yaml", stackName, delete,
 					debug);
 			Map<String, Parameter> params = new HashMap<String, Parameter>();
 			params.put("NetID", new Parameter("NetID", Type.String, "", "", "",

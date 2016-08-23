@@ -34,8 +34,8 @@ public abstract class AbstractTest {
 	@Before
 	public void init() throws Exception {
 
-		String pathHot = getClass().getResource("/demo-template.yaml").getPath();
-		String pathEnv = getClass().getResource("/default.yaml")
+		String pathHot = getClass().getResource("/hot/demo-template.yaml").getPath();
+		String pathEnv = getClass().getResource("/env/default.yaml")
 				.getPath();
 
 		HtmlPage configPage = j.createWebClient().goTo("configure");
