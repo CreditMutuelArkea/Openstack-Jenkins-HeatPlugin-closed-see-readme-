@@ -13,7 +13,7 @@
 	</parent>
 	<groupId>com.arkea.jenkins</groupId>
 	<artifactId>openstack-heat</artifactId>
-	<version>tag</version>
+	<version>1.0</version>
 	<packaging>hpi</packaging>
 	<name>Openstack Heat Plugin</name>
 	<description>This plugin is used to interact with OpenStack via Heat Orchestration Template (HOT).</description>
