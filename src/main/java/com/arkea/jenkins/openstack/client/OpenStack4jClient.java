@@ -101,7 +101,9 @@ public class OpenStack4jClient {
 	 *            parameters associated
 	 * @param fullEnvFile
 	 *            full name to acces env file (optional)
-	 * @return
+	 * @param timeout
+	 *            timeout to abort the creation
+	 * @return the stack created
 	 */
 	public Stack createStack(String stackName, String fullName,
 			Map<String, String> params, String fullEnvFile, long timeout) {

@@ -44,10 +44,22 @@ public class ProcessStatus {
 
 	/**
 	 * Check a status of an operation openstack via a loop
+	 * 
+	 * @param status
+	 *            status to check
+	 * @param client
+	 *            client to access at OpenStack
+	 * @param cLog
+	 *            logger
+	 * @param originalStack
+	 *            stack to test
+	 * @param timersOS
+	 *            timeout
+	 * @return a boolean result for the action
 	 */
 	public static boolean checkStackStatus(StackStatus status,
-			OpenStack4jClient client, ConsoleLogger cLog,
-			Stack originalStack, TimersOS timersOS) {
+			OpenStack4jClient client, ConsoleLogger cLog, Stack originalStack,
+			TimersOS timersOS) {
 
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(
 				DateFormat.MEDIUM, DateFormat.MEDIUM);
@@ -121,8 +133,8 @@ public class ProcessStatus {
 								.toMinutes(time)));
 	}
 
-	private static void printEvents(Stack stack,
-			OpenStack4jClient client, ConsoleLogger cLog) {
+	private static void printEvents(Stack stack, OpenStack4jClient client,
+			ConsoleLogger cLog) {
 		try {
 			List<? extends Event> events = client.getEvents(stack);
 			for (Event event : events) {

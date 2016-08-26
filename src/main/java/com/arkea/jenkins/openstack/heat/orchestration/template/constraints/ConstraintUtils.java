@@ -37,7 +37,7 @@ public class ConstraintUtils {
 	 * Build a constraint bean list from JSON constraints part parsing in entry
 	 * file.
 	 * 
-	 * @param constraints
+	 * @param properties
 	 *            the constraints list String structure
 	 * @return
 	 *         the equivalent constraints JAVA list
@@ -116,7 +116,7 @@ public class ConstraintUtils {
 	 * Build a constraint bean list from JSON constraints part parsing in JSON
 	 * parameter.
 	 * 
-	 * @param constraints
+	 * @param properties
 	 *            the constraints list JSON structure
 	 * @return
 	 *         the equivalent constraints JAVA list

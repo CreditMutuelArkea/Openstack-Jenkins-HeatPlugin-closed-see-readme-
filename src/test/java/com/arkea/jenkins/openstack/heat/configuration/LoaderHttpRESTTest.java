@@ -43,8 +43,8 @@ public class LoaderHttpRESTTest extends AbstractTest {
 		context.setContextPath("/testHot");
 		ResourceHandler resourceHandler = new ResourceHandler();
 		String path = getClass().getResource("/listHots").getPath();
-		resourceHandler.setResourceBase(path.substring(0,
-				path.lastIndexOf("/")));
+		resourceHandler
+				.setResourceBase(path.substring(0, path.lastIndexOf("/")));
 		context.setHandler(resourceHandler);
 
 		server.setHandler(context);
@@ -61,24 +61,36 @@ public class LoaderHttpRESTTest extends AbstractTest {
 		HtmlSelect selectLoader = ToolUtils.getSelect(form, "0",
 				"LoaderFromDir");
 		selectLoader.getOptions().get(1).setSelected(true);
+		
+		// Time to change the page
+		Thread.sleep(1000);
+		
 		form.getInputByName("httpRESTEnv").click();
 
 		form.getInputByName("_.urlListHot").setValueAttribute(
 				"http://localhost:8180/testHot/listHots");
-
+		
 		form.getInputByName("_.urlListEnv").setValueAttribute(
 				"http://localhost:8180/testHot/listEnvs");
 
 		// Test call url hot
-		form.getButtonByCaption("Test Url Hot").click();
+		ToolUtils.getButton(form, "Test Url Hot").click();
+		
+		// Time to change the page
+		Thread.sleep(1000);
+		
 		assertEquals(1, form.getElementsByAttribute("div", "class", "ok")
 				.size());
 
 		// Test call url env
-		form.getButtonByCaption("Test Url Env").click();
+		ToolUtils.getButton(form, "Test Url Env").click();
+		
+		// Time to change the page
+		Thread.sleep(1000);
+		
 		assertEquals(2, form.getElementsByAttribute("div", "class", "ok")
 				.size());
-		
+
 		server.stop();
 
 	}

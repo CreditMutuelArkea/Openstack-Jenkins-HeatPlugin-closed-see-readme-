@@ -223,10 +223,11 @@ public class LoaderFromDir extends AbstractLoader {
 		/**
 		 * Test if the path Hot is valid
 		 * 
-		 * @param path
-		 *            to test
-		 * @return the result of the test
-		 * @throws URISyntaxException
+		 * @param pathHot
+		 *            path hot to test
+		 * @param extHot
+		 *            ext hot to test
+		 * @return FormValidation with the message result
 		 */
 		public FormValidation doTestPathHot(
 				@QueryParameter("pathHot") String pathHot,
@@ -254,8 +255,12 @@ public class LoaderFromDir extends AbstractLoader {
 		/**
 		 * Test if the path Env is valid
 		 * 
-		 * @param path
-		 *            to test
+		 * @param pathEnv
+		 *            path env to test
+		 * @param extEnv
+		 *            ext env to test
+		 * @param defaultEnv
+		 *            default env file to test
 		 * @return the result of the test
 		 */
 		public FormValidation doTestPathEnv(

@@ -49,10 +49,19 @@ public class StackOperationsUtils {
 
 	/**
 	 * Delete a stack on Openstack
+	 * 
+	 * @param stackName
+	 *            stack to delete
+	 * @param client
+	 *            client to access at OpenStack
+	 * @param cLog
+	 *            logger
+	 * @param timersOS
+	 *            timeouts
+	 * @return a boolean result for the action
 	 */
 	public static boolean deleteStack(String stackName,
-			OpenStack4jClient client, ConsoleLogger cLog,
-			TimersOS timersOS) {
+			OpenStack4jClient client, ConsoleLogger cLog, TimersOS timersOS) {
 
 		boolean rtn = true;
 
@@ -81,10 +90,23 @@ public class StackOperationsUtils {
 
 	/**
 	 * Create a stack
+	 * 
+	 * @param eVU
+	 *            variables environments
+	 * @param bundle
+	 *            bundle corresponding at the stack
+	 * @param projectOS
+	 *            project OpenStack
+	 * @param client
+	 *            client to access at OpenStack
+	 * @param cLog
+	 *            logger
+	 * @param timersOS
+	 *            timeouts
+	 * @return a boolean result for the action
 	 */
-	public static boolean createStack(EnvVarsUtils eVU,
-			Bundle bundle, ProjectOS projectOS,
-			OpenStack4jClient client, ConsoleLogger cLog,
+	public static boolean createStack(EnvVarsUtils eVU, Bundle bundle,
+			ProjectOS projectOS, OpenStack4jClient client, ConsoleLogger cLog,
 			TimersOS timersOS) {
 
 		boolean rtn = true;
@@ -97,9 +119,8 @@ public class StackOperationsUtils {
 			Map<String, String> vars = eVU.getVars(bundle.getParamsOS());
 			cLog.logDebugMap(Messages.stack_parameters(), vars);
 
-			AbstractLoader loader = ((HOTPlayerSettings) Jenkins
-					.getInstance().getDescriptor(HOTPlayerSettings.class))
-					.getLoader();
+			AbstractLoader loader = ((HOTPlayerSettings) Jenkins.getInstance()
+					.getDescriptor(HOTPlayerSettings.class)).getLoader();
 
 			// Get the full path for the env file if it presents
 			String envFile = bundle.getEnvName();
@@ -120,8 +141,8 @@ public class StackOperationsUtils {
 				Map<String, String> outputs = new TreeMap<String, String>();
 
 				// Sort the outputs
-				List<Map<String, Object>> exits = client.getDetails(
-						bundleName, stackCreate.getId()).getOutputs();
+				List<Map<String, Object>> exits = client.getDetails(bundleName,
+						stackCreate.getId()).getOutputs();
 				Collections
 						.sort(exits, OutputUtils.getComparatorAlphabetical());
 				for (Map<String, Object> output : exits) {

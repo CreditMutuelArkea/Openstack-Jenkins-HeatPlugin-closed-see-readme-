@@ -59,7 +59,15 @@ public class HOTPlayerSettingsLabelsTest extends AbstractTest {
 		HtmlSelect selectLoader = ToolUtils.getSelect(form, "0",
 				"LoaderFromDir");
 		selectLoader.getOptions().get(1).setSelected(true);
+		
+		// Time to change the page
+		Thread.sleep(1000);
+				
 		form.getInputByName("httpRESTEnv").click();
+		
+		// Time to change the page
+		Thread.sleep(1000);
+				
 		html = form.asText();
 		testLoaderHttpREST(html);
 

@@ -194,7 +194,6 @@ public class HOTPlayer extends Builder {
 
 		/**
 		 * @return the list of template orchestration Heat
-		 * @throws hudson.model.Descriptor.FormException
 		 */
 		public String[] getHotItems() {
 			return hotPlayerSettings.getLoader().getHots();
@@ -202,7 +201,6 @@ public class HOTPlayer extends Builder {
 
 		/**
 		 * @return the list of env files
-		 * @throws IOException
 		 */
 		public String[] getEnvItems() {
 			return hotPlayerSettings.getLoader().getEnvs();
@@ -228,10 +226,9 @@ public class HOTPlayer extends Builder {
 		 * @param hotName
 		 *            hot selected
 		 * @return the bundle with the informations in JSONObject format
-		 * @throws IOException
 		 */
 		@JavaScriptMethod
-		public JSONObject getBundle(String hotName) throws IOException {
+		public JSONObject getBundle(String hotName) {
 			String body = hotPlayerSettings.getLoader().getHot(hotName);
 			if (Strings.isNullOrEmpty(body)) {
 				return null;
@@ -247,10 +244,9 @@ public class HOTPlayer extends Builder {
 		 * @param envName
 		 *            envName selected
 		 * @return the json contents of the envFile
-		 * @throws IOException
 		 */
 		@JavaScriptMethod
-		public JSONObject getEnv(String envName) throws IOException {
+		public JSONObject getEnv(String envName) {
 			return JSONObject.fromObject(EnvMapperUtils
 					.getEnv(hotPlayerSettings.getLoader().getEnv(envName)));
 		}

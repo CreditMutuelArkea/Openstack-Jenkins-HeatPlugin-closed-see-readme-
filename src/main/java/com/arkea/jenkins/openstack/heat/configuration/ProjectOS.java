@@ -55,8 +55,8 @@ public class ProjectOS implements Describable<ProjectOS> {
 	private Secret password;
 
 	@DataBoundConstructor
-	public ProjectOS(String project, String url,
-			JSONObject v3, String user, Secret password) {
+	public ProjectOS(String project, String url, JSONObject v3, String user,
+			Secret password) {
 		this.project = project;
 		this.url = url;
 		if (v3 != null) {
@@ -173,6 +173,22 @@ public class ProjectOS implements Describable<ProjectOS> {
 
 		/**
 		 * Test the connection to OpenStack.
+		 * 
+		 * @param project
+		 *            project to test
+		 * @param url
+		 *            identity url
+		 * @param v3
+		 *            v3 url ?
+		 * @param domain
+		 *            domain if v3 url
+		 * @param user
+		 *            user
+		 * @param password
+		 *            password
+		 * @return FormValidation for the result
+		 * @throws FormException
+		 *             if the validation fails
 		 */
 		public FormValidation doTestConnection(
 				@QueryParameter("project") String project,
@@ -181,7 +197,7 @@ public class ProjectOS implements Describable<ProjectOS> {
 				@QueryParameter("domain") String domain,
 				@QueryParameter("user") String user,
 				@QueryParameter("password") Secret password)
-				throws IOException, ServletException {
+				throws FormException {
 			try {
 
 				StringBuilder msg = new StringBuilder();
@@ -206,13 +222,13 @@ public class ProjectOS implements Describable<ProjectOS> {
 				if (msg.length() > 0) {
 					return FormValidation.warning(msg.toString());
 				}
-				OpenStack4jClient client = new OpenStack4jClient(
-						new ProjectOS(project, url, v3, domain, user, password));
+				OpenStack4jClient client = new OpenStack4jClient(new ProjectOS(
+						project, url, v3, domain, user, password));
 				if (client.isConnectionOK()) {
 					return FormValidation.ok(Messages.formValidation_success());
 				} else {
-					return FormValidation
-							.error(Messages.formValidation_errorConnect());
+					return FormValidation.error(Messages
+							.formValidation_errorConnect());
 				}
 			} catch (Exception e) {
 				return FormValidation.error(Messages

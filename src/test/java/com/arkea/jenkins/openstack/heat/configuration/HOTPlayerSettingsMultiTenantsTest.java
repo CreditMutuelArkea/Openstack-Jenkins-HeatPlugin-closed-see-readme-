@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.arkea.jenkins.openstack.AbstractTest;
+import com.arkea.jenkins.openstack.ToolUtils;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -42,7 +43,7 @@ public class HOTPlayerSettingsMultiTenantsTest extends AbstractTest {
 		HtmlPage configPage = j.createWebClient().goTo("configure");
 		HtmlForm form = configPage.getFormByName("config");
 
-		form.getButtonByCaption("Add a new Project(Tenant) configuration")
+		ToolUtils.getButton(form, "Add a new Project(Tenant) configuration")
 				.click();
 		List<HtmlInput> projects = form.getInputsByName("_.project");
 		projects.get(1).setValueAttribute("projectTest2");

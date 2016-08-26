@@ -45,8 +45,8 @@ import com.google.common.base.Strings;
 public class LoaderHttpREST extends AbstractLoader {
 
 	/** Logger. */
-	private static Logger LOG = Logger.getLogger(LoaderHttpREST.class
-			.getName());
+	private static Logger LOG = Logger
+			.getLogger(LoaderHttpREST.class.getName());
 
 	private String urlListHot;
 
@@ -71,10 +71,12 @@ public class LoaderHttpREST extends AbstractLoader {
 		if (httpRESTEnv != null) {
 			if (httpRESTEnv instanceof JSONObject) {
 				this.checkEnv = true;
-				this.urlListEnv = ((JSONObject) httpRESTEnv).getString("urlListEnv");
+				this.urlListEnv = ((JSONObject) httpRESTEnv)
+						.getString("urlListEnv");
 				this.urlDetailEnv = ((JSONObject) httpRESTEnv)
 						.getString("urlDetailEnv");
-				this.defaultEnv = ((JSONObject) httpRESTEnv).getString("defaultEnv");
+				this.defaultEnv = ((JSONObject) httpRESTEnv)
+						.getString("defaultEnv");
 			}
 		}
 	}
@@ -174,10 +176,11 @@ public class LoaderHttpREST extends AbstractLoader {
 		/**
 		 * Test if the url Hot is valid
 		 * 
-		 * @param url
+		 * @param urlListHot
 		 *            to test
 		 * @return the result of the test
 		 * @throws IOException
+		 *             if the url isn't catched
 		 */
 		public FormValidation doTestUrlHot(
 				@QueryParameter("urlListHot") String urlListHot)
@@ -189,10 +192,11 @@ public class LoaderHttpREST extends AbstractLoader {
 		/**
 		 * Test if the url Env is valid
 		 * 
-		 * @param url
+		 * @param urlListEnv
 		 *            to test
 		 * @return the result of the test
 		 * @throws IOException
+		 *             if the url isn't catched
 		 */
 		public FormValidation doTestUrlEnv(
 				@QueryParameter("urlListEnv") String urlListEnv)

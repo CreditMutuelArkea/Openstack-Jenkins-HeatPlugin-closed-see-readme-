@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.arkea.jenkins.openstack.AbstractTest;
+import com.arkea.jenkins.openstack.ToolUtils;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 
 /**
@@ -35,12 +36,20 @@ public class LoaderFromDirTest extends AbstractTest {
 		HtmlForm form = j.createWebClient().goTo("configure")
 				.getFormByName("config");
 
-		form.getButtonByCaption("Test Path Hot").click();
+		ToolUtils.getButton(form, "Test Path Hot").click();
+
+		// Time to change the page
+		Thread.sleep(1000);
+
 		assertEquals(1, form.getElementsByAttribute("div", "class", "ok")
 				.size());
 
 		// Test LoaderFromDir with default.yaml
-		form.getButtonByCaption("Test Path Env").click();
+		ToolUtils.getButton(form, "Test Path Env").click();
+
+		// Time to change the page
+		Thread.sleep(1000);
+
 		assertEquals(2, form.getElementsByAttribute("div", "class", "ok")
 				.size());
 

@@ -3,6 +3,7 @@ package com.arkea.jenkins.openstack;
 import java.util.List;
 
 import com.gargoylesoftware.htmlunit.html.DomNode;
+import com.gargoylesoftware.htmlunit.html.HtmlButton;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
@@ -27,14 +28,29 @@ import com.gargoylesoftware.htmlunit.html.HtmlSelect;
  * 
  */
 public class ToolUtils {
-	
+
 	public static HtmlSelect getSelect(HtmlForm form, String value, String label) {
-		List<HtmlElement> options = form.getElementsByAttribute("option", "value", value);
+		List<HtmlElement> options = form.getElementsByAttribute("option",
+				"value", value);
 		HtmlSelect rtn = null;
-		for(HtmlElement option : options) {
+		for (HtmlElement option : options) {
 			DomNode child = option.getFirstChild();
-			if(label.equals(child.getNodeValue())) {
+			if (label.equals(child.getNodeValue())) {
 				rtn = (HtmlSelect) option.getParentNode();
+				break;
+			}
+		}
+		return rtn;
+	}
+
+	public static HtmlButton getButton(HtmlForm form, String caption) {
+		List<HtmlButton> buttons = form.getElementsByAttribute("button",
+				"type", "button");
+		HtmlButton rtn = null;
+		for (HtmlButton button : buttons) {
+			DomNode child = button.getFirstChild();
+			if (caption.equals(child.getNodeValue())) {
+				rtn = button;
 				break;
 			}
 		}

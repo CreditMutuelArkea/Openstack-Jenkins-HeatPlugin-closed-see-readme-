@@ -34,14 +34,14 @@ public abstract class AbstractTest {
 	@Before
 	public void init() throws Exception {
 
-		String pathHot = getClass().getResource("/hot/demo-template.yaml").getPath();
-		String pathEnv = getClass().getResource("/env/default.yaml")
+		String pathHot = getClass().getResource("/hot/demo-template.yaml")
 				.getPath();
+		String pathEnv = getClass().getResource("/env/default.yaml").getPath();
 
 		HtmlPage configPage = j.createWebClient().goTo("configure");
 		HtmlForm form = configPage.getFormByName("config");
 
-		form.getButtonByCaption("Add a new Project(Tenant) configuration")
+		ToolUtils.getButton(form, "Add a new Project(Tenant) configuration")
 				.click();
 		form.getInputByName("_.project").setValueAttribute("projectTest");
 		form.getInputByName("_.url").setValueAttribute("http://openstack.com");
