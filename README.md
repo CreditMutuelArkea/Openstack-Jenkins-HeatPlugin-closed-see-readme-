@@ -1,5 +1,10 @@
 # Openstack Heat Jenkins plugin
 
+## NEWS ##
+Our Openstack Heat Plugin is now hosted on the official Jenkins Github Repository : https://github.com/CreditMutuelArkea/Openstack-Jenkins-HeatPlugin.git
+
+Go check it, the lastest news are available on this repo.
+
 ## Description
 --------------
 Openstack Heat is a Jenkins plugin that allows to interact with OpenStack by using the Heat API.<br />
